@@ -5,7 +5,7 @@ This repository contains script to simplify the setup of Microsoft Teams for pro
 ## Set-GroupChannels
 
 ```
-  Set-GroupChannels.ps1 -ExcelFile <Participants as XLSX from Moodle> -GroupId <MS Teams Group Id>
+Set-GroupChannels.ps1 -ExcelFile <Participants as XLSX from Moodle> -GroupId <MS Teams Group Id>
 ```
 
 Sets up the groups and their members from the given Excel file. If the GroupId is unknown, a list of availabe groups is shown to select the group.
@@ -20,7 +20,7 @@ Known limitations:
 ## Remove-Channels
 
 ```
-  Remove-Channels.ps1 -GroupId <MS Teams Group Id>
+Remove-Channels.ps1 -GroupId <MS Teams Group Id>
 ```
 
 Removes all channels from the given group after renaming them. The groups will be permanently removed after 21 days. Renaming the groups allows the recreation of groups with the former name.
