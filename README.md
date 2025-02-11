@@ -20,7 +20,7 @@ Known limitations:
 ## Remove-Channels
 
 ```
-  Set-GroupChannels.ps1 -GroupId <MS Teams Group Id>
+  Remove-Channels.ps1 -GroupId <MS Teams Group Id>
 ```
 
 Removes all channels from the given group after renaming them. The groups will be permanently removed after 21 days. Renaming the groups allows the recreation of groups with the former name.
