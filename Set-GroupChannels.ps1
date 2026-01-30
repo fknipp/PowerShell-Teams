@@ -79,7 +79,8 @@ function Set-GroupChannels {
   param(
     [Parameter(Mandatory = $true)]
     [string]$ExcelFile,
-    [string]$GroupId
+    [string]$GroupId,
+    [switch]$Owner
   )
 
   $Team = Select-Team -GroupId $GroupId
@@ -104,8 +105,15 @@ function Set-GroupChannels {
 
     foreach ($Member in $Group.Members) {
       if (! ($ChannelUsers | Where-Object User -EQ $Member)) {
-        Write-Host ("Adding {0} to {1}." -f $Member, $DisplayName)
-        Add-TeamChannelUser -GroupId $Team.GroupId -DisplayName $DisplayName -User $Member
+        if ($Owner) {
+          Write-Host ("Adding {0} to {1} as owner." -f $Member, $DisplayName)
+          Add-TeamChannelUser -GroupId $Team.GroupId -DisplayName $DisplayName -User $Member
+          Add-TeamChannelUser -GroupId $Team.GroupId -DisplayName $DisplayName -User $Member -Role Owner          
+        }
+        else {
+          Write-Host ("Adding {0} to {1}." -f $Member, $DisplayName)
+          Add-TeamChannelUser -GroupId $Team.GroupId -DisplayName $DisplayName -User $Member
+        }
       }
       else {
         Write-Host ("{0} is already in {1}." -f $Member, $DisplayName)
